@@ -4,7 +4,7 @@
 all:    prechroot
 push:   prechroot
 	docker push     innovanon/lfs-$<
-chroot: sources/.sentinel
+prechroot: sources/.sentinel
 	docker build -t innovanon/lfs-$@ $(TEST) .
 commit:
 	git add .
