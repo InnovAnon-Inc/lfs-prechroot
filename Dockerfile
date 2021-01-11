@@ -24,7 +24,8 @@ RUN sleep 31                                           \
       x86_64) chown -v lfs $LFS/lib64 ;;               \
     esac                                               \
  && rm -rf                    /root/.bin               \
- && mv -v /usr{/local,}/bin/dl
+ && mv -v /usr{/local,}/bin/dl                         \
+ && exec true || exec false
 
 FROM builder-02 as builder-03
 ARG LFS=/mnt/lfs
@@ -33,6 +34,7 @@ COPY --from=innovanon/book --chown=root /home/lfs/lfs-sysd-commands/chapter05/* 
                               /home/lfs/.bin/
 
 #WORKDIR $LFS/sources
+# TODO check command -v
 USER lfs
 RUN sleep 31 \
  && dl binutils-2.35.1.tar.xz                        \
@@ -67,6 +69,7 @@ RUN sleep 31 \
  && cd              gcc-10.2.0          \
  && $SHELL -eux 039-gcc-libstdc++-pass1 \
  && cd $LFS/sources                     \
- && rm -rf          gcc-10.2.0
+ && rm -rf          gcc-10.2.0         \
+ && exec true || exec false
 #                    $HOME/.bin
 
