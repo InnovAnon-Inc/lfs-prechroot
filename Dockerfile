@@ -37,6 +37,8 @@ COPY --from=innovanon/book --chown=root /home/lfs/lfs-sysd-commands/chapter05/* 
 # TODO check command -v
 USER lfs
 RUN sleep 31 \
+ && command -v dl                                         \
+ \
  && dl binutils-2.35.1.tar.xz                        \
  && cd              binutils-2.35.1                     \
  && $SHELL -eux 035-binutils-pass1                      \
