@@ -69,4 +69,14 @@ jobs:
               docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
               docker push innovanon/lfs-prechroot
             fi
+      - run:
+          name: Push upstream (chroot)
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              curl --location --request POST \
+                'https://circleci.com/api/v2/project/github/InnovAnon-Inc/lfs-chroot/pipeline' \
+                --header 'Content-Type: application/json' \
+                --data '{"branch":"master"}' \
+                -u "${API_TOKEN}:"
+            fi
 
