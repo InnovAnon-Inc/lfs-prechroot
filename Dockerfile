@@ -75,3 +75,6 @@ RUN sleep 31 \
  && exec true || exec false
 #                    $HOME/.bin
 
+FROM scratch as squash
+COPY --from=builder-03 / /
+
