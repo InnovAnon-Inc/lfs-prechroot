@@ -17,4 +17,4 @@ sources/.sentinel: $(shell find sources -type f)
 
 clean:
 	rm -vf */.sentinel .sentinel
-
+ 
