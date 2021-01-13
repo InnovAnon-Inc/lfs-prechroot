@@ -1,4 +1,5 @@
 FROM innovanon/builder as builder-01
+USER root
 ARG LFS=/mnt/lfs
 ARG TEST=
 # optional
@@ -75,6 +76,10 @@ RUN sleep 31 \
  && exec true || exec false
 #                    $HOME/.bin
 
-FROM scratch as squash
-COPY --from=builder-03 / /
+#FROM builder-03 as squash-tmp
+#USER root
+#RUN  squash.sh
+#FROM scratch as squash
+#ADD --from=squash-tmp /tmp/final.tar /
 
+FROM builder-03
