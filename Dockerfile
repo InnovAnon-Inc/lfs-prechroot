@@ -63,6 +63,7 @@ RUN sleep 31 \
  && rm -rf          linux-5.10.4                     \
  \
  && dl glibc-2.32.tar.xz                        \
+       glibc-2.32-fhs-1.patch \
  && cd              glibc-2.32                     \
  && $SHELL -eux 038-glibc                          \
  && cd $LFS/sources                                \
